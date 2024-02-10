@@ -1,0 +1,32 @@
+.pro-card {
+    width: 399px;
+    height: 300px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.card-head-define {
+    width: 400px;
+    height: 420px;
+    margin-bottom: 15px;
+    border: 1px solid;
+    border-radius: 15px;
+    box-shadow: 2px 0px 5px 0px #d9d9d9;
+}
+
+.dot-in-card {
+    left: 65%;
+    position: absolute;
+    bottom: -5px;
+}
+
+.dot-in-card i {
+    font-size: 27px;
+    margin-left: 15px;
+    cursor: pointer;
+    color: #d9d9d9;
+}
+
+a {
+    text-decoration: none;
+}

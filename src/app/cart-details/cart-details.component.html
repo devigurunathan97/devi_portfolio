@@ -1,0 +1,11 @@
+<app-header></app-header>
+
+<div class="container mt-5">
+  <div class="row">
+    @for (data of products; track data.pro_id) {
+    <app-product class="hellena" [result]="data"></app-product>
+    }
+  </div>
+</div>
+
+<app-footer></app-footer>

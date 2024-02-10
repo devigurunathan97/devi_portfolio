@@ -1,0 +1,101 @@
+.header {
+    width: 100%;
+    background-color: #d9d9d9;
+    height: 90px;
+    position: relative;
+}
+
+.companyName {
+    position: absolute;
+    padding-left: 40px;
+    top: 30px;
+}
+
+.name {
+    font-size: 20px;
+    color: #000;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.search-container {
+    position: relative;
+    left: 35%;
+    top: 20px;
+}
+
+.search-container input[type=text] {
+    width: 25%;
+    height: 50px;
+    border-radius: 15px 0px 0px 15px;
+    font-size: 20px;
+    color: #000;
+    border: 1px solid #000;
+}
+
+::-webkit-input-placeholder {
+    text-align: center;
+}
+
+:-moz-placeholder {
+    text-align: center;
+}
+
+button[type=submit] {
+    width: 5%;
+    height: 50px;
+    position: absolute;
+    border-radius: 0px 15px 15px 0px;
+    border: 1px solid #000;
+    border-left: none;
+    font-size: 20px;
+    color: #000;
+    background-color: #fff;
+}
+
+button:hover {
+    background-color: #000;
+    color: #d9d9d9;
+}
+
+// .userLogin{
+//     position:absolute;
+//     left:90%;
+//     bottom:25px;
+// }
+
+// .userLoginId a{
+//     text-decoration: none;
+//     padding-left:10px;
+//     padding-bottom:5px;
+//     font-size:20px;
+//     color:#000;
+//     font-weight: 500;
+// }
+// .userLoginId a:hover {
+//     color:#c1760a;
+// }
+
+.loginBtn {
+    position: absolute;
+    left: 90%;
+    bottom: 25px;
+}
+
+.loginBtn .buttonStyle {
+    padding: 5px 10px 5px 10px;
+    border: 0;
+    background: white;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 8px;
+    box-shadow: 5px 5px #925c1f;
+    transition: all .1s linear;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.loginBtn .buttonStyle:hover {
+    box-shadow: 5px 5px #000;
+    color: #925c1f;
+}

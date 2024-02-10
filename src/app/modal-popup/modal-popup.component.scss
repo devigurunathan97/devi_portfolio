@@ -1,0 +1,39 @@
+.modalpopup{
+    position: absolute;
+    width:50%;
+    height:70%;
+    background-color: #d9d9d9;
+    left:25%;
+    top:12%;
+}
+.heading{
+    font-size: 30px;
+    text-align: center;
+    font-weight: 600;
+    margin-top:10%;
+}
+.loginDetails{
+    left:25%;
+    position: absolute;
+    padding-top:10%;
+}
+.loginDetails input[type=email],input[type=password] {
+    width:490px;
+    height:70px;
+    border-radius: 15px;
+    border: 1px solid;
+}
+.loginDetails input[type=password] {
+    margin-top:50px;
+}
+::-webkit-input-placeholder {
+    text-align: center;
+  }
+:-moz-placeholder {
+    text-align: center;
+  }
+.button{
+    position: absolute;
+    left:205px;
+    top:400px;
+}
