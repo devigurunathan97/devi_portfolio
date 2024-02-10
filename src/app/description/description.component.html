@@ -2,7 +2,7 @@
 
 <div class="container-fluid">
     <div class="ProductHeading">
-        <h3 class="title">Title</h3>
+        <h3 class="title">{{data?.title}}</h3>
         <div class="productDescription">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
             Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
             galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but
@@ -17,7 +17,8 @@
             </div>
             <div class="col-4">
                 <div class="productDetails">
-                    <button class="btn btn-primary" id="rzp-button1" (click)="initPay();">Pay</button>
+                    <button class="btn btn-primary" id="rzp-button1"
+                        (click)="initPay(data?.pro_id, data?.price)">Pay</button>
                 </div>
             </div>
         </div>

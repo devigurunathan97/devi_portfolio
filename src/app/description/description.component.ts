@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { PortfolioService } from '../portfolio.service';
+import { ActivatedRoute } from '@angular/router';
+declare var Razorpay: any;
 
 @Component({
   selector: 'app-description',
@@ -11,43 +13,66 @@ import { PortfolioService } from '../portfolio.service';
   styleUrl: './description.component.scss'
 })
 export class DescriptionComponent {
-  order_id: any
-  createRzpayOrder(data: any) {
-    console.log(data);
-    this.initPay(this.order_id);
+  data: any;
+  options: any;
+  payment_id: any;
+  order_id: any;
+  user_id: any;
+  constructor(private route: ActivatedRoute, private portfolio: PortfolioService) { }
+
+  ngOnInit() {
+    this.portfolio.product(this.route.snapshot.paramMap.get('id')).subscribe((res: any) => {
+      this.data = res.data[0]
+    })
   }
 
-  initPay(val: any) {
-    const options: any = {
-      key: 'rzp_test_key',
-      amount: 125500, // amount should be in paise format to display Rs 1255 without decimal point
-      currency: 'INR',
-      name: '', // company name or product name
-      description: '',  // product description
-      image: './assets/logo.png', // company logo or product image
-      order_id: val, // order_id created by you in backend
-      modal: {
-        // We should prevent closing of the form when esc key is pressed.
-        escape: false,
-      },
-      notes: {
-        // include notes if any
-      },
-      theme: {
-        color: '#0c238a'
-      }
-    };
-    options.handler = ((response: any, error: any) => {
-      options.response = response;
-      console.log(response);
-      console.log(options);
-      // call your backend api to verify payment signature & capture transaction
-    });
-    options.modal.ondismiss = (() => {
-      // handle the case when user closes the form while transaction is in progress
-      console.log('Transaction cancelled.');
-    });
-    const rzp = new this.winRef.nativeWindow.Razorpay(options);
-    rzp.open();
+  initPay(course_id: any, price: any) {
+    let bodyData = {
+      amount: price
+    }
+    this.portfolio.create_order(bodyData).subscribe((res: any) => {
+      this.order_id = res.data.id
+      this.options = {
+        "key": "rzp_test_JWbHgJcb9mj2BH",
+        "amount": parseInt(price) * 100,
+        "currency": "INR",
+        "name": "Portfolio",
+        "description": "Portfolio Transaction",
+        "image": "assets/img/logo/logo.jpg",
+        "handler": function (response: any) {
+          this.order_id = response.razorpay_order_id;
+          this.payment_id = response.razorpay_payment_id;
+        },
+        "prefill": {
+          "name": "demo",
+          "email": "demo@gmail.com",
+          "contact": "9632587410"
+        },
+        "notes": {
+          "address": "Razorpay Corporate Office"
+        },
+        "theme": {
+          "color": "#3399cc"
+        },
+        "order_id": this.order_id,
+      };
+  
+      this.options.handler = ((response: any) => {
+        this.payment_id = response.razorpay_payment_id
+        console.log("outer : " + this.payment_id, this.order_id, course_id, price)
+        let payment_data = {
+          payment_id: this.payment_id,
+          order_id: this.order_id,
+          course_id: course_id,
+          user_id: 1, // this.user_id
+          price: price
+        }
+        this.portfolio.payment_details(payment_data).subscribe((data: any) => {
+            console.log("payment_details : " + data);
+        });
+      });
+      var rzp1 = new Razorpay(this.options);
+      rzp1.open();
+    })
   }
 }
